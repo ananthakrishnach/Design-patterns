@@ -1,0 +1,7 @@
+Purchase order processing is a common activity in the business sector. Each purchase order must be approved by
+a management personnel at some level. For example, a project manager may approve or disapprove a purchase
+order, if the manager cannot handle the purchase order for some reason, the manager forwards the purchase
+order to the next higher level, and so on, until the request is handled or the approval hierarchy is exhausted.
+Assume that there are three levels of approval authorities: project manager, engineering director, and vice present. They
+can approve each purchase that is within ten thousand, one hundred thousand and one million dollars, and not
+to exceed a total of one hundred thousand, one million and ten million dollars for the year, respectively.

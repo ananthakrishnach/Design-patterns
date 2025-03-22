@@ -1,0 +1,39 @@
+Companies hire different types of employee including:
+	Full-time employee. Full-time employees work 40 hours a week and are
+typically paid on a salary basis (or gross income) that does not change
+during the year. They may also have access to benefits provided by the
+company, like healthcare coverage and 401(k). The payroll for a full-time
+employee is computed by using the following formula:
+Period pay=(gross income - healthcare deduction - 401(k) deduction) * (1
+- tax withholding rate)
+where gross income, healthcare deduction, 401(k) deduction and tax withholding
+rate are different for different employees.
+	Part-time employee. Part-time employees usually work less than 30 hours
+per week and are paid hourly. The payroll for a part-time employee is
+calculated as follows:
+Period pay=hourly rate * hours worked * (1 - tax withholding rate)
+where hourly rate, hours worked and tax withholding rate are different for
+different employees.
+	Contract employee. Contract employees are hired for a specified period
+of time outlined in a contract. The number of work hours for a contract
+employee may vary for each contract, but they are not limited to 40 hours
+per week. The payroll for a contract employee is computed as follows:
+Period pay=contract total/(contract period/length of pay interval)
+where contract total and contract period are different for different contract
+employees, and the length of pay interval is assumed to be monthly. For
+example, if the contract total is $240,000 and the contract period is 2
+years, then the period pay or monthly pay is
+Period pay=$240,000 / (24 months / 1 month) = $10,000
+
+Apply the controller
+pattern, visitor pattern, the expert pattern, and the iterator pattern
+to design a simple application. When the application is launched, it shows a
+window with buttons and/or menu items for doing the following functions and
+display the results. You can assume that a collection of all employees is created
+and initialized when the application starts. The application must provide the
+following functionalities:
+
+Show Payroll for all of the employees. That is, it computes and displays
+the payroll for all of the employees. Hint: you apply the expert pattern
+and iterator pattern here — that is, each employee object computes its
+payroll.

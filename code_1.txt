@@ -1,0 +1,103 @@
+import java.util.Scanner;
+
+// Handler interface
+interface ApprovalAuthority {
+    void setNextAuthority(ApprovalAuthority nextAuthority);
+    void processPurchase(double purchaseAmount);
+}
+
+// Concrete handler 1: Project Manager
+class ProjectManager implements ApprovalAuthority {
+    private static final double LIMIT = 10000.0;
+    private ApprovalAuthority nextAuthority;
+
+    public void setNextAuthority(ApprovalAuthority nextAuthority) {
+        this.nextAuthority = nextAuthority;
+    }
+
+    public void processPurchase(double purchaseAmount) {
+        if (purchaseAmount <= LIMIT) {
+            System.out.println("Project Manager: Purchase approved.");
+        } else if (nextAuthority != null) {
+            nextAuthority.processPurchase(purchaseAmount);
+        } else {
+            System.out.println("Purchase disapproved. Exceeds authority limit.");
+        }
+    }
+}
+
+// Concrete handler 2: Engineering Director
+class EngineeringDirector implements ApprovalAuthority {
+    private static final double LIMIT = 100000.0;
+    private ApprovalAuthority nextAuthority;
+
+    public void setNextAuthority(ApprovalAuthority nextAuthority) {
+        this.nextAuthority = nextAuthority;
+    }
+
+    public void processPurchase(double purchaseAmount) {
+        if (purchaseAmount <= LIMIT) {
+            System.out.println("Engineering Director: Purchase approved.");
+        } else if (nextAuthority != null) {
+            nextAuthority.processPurchase(purchaseAmount);
+        } else {
+            System.out.println("Purchase disapproved. Exceeds authority limit.");
+        }
+    }
+}
+
+// Concrete handler 3: Vice President
+class VicePresident implements ApprovalAuthority {
+    private static final double LIMIT = 1000000.0;
+    private ApprovalAuthority nextAuthority;
+
+    public void setNextAuthority(ApprovalAuthority nextAuthority) {
+        this.nextAuthority = nextAuthority;
+    }
+
+    public void processPurchase(double purchaseAmount) {
+        if (purchaseAmount <= LIMIT) {
+            System.out.println("Vice President: Purchase approved.");
+        } else {
+            System.out.println("Purchase disapproved. Exceeds authority limit.");
+        }
+    }
+}
+
+public class PurchaseOrderApp {
+    public static void main(String[] args) {
+        // Create instances of approval authorities
+        ApprovalAuthority projectManager = new ProjectManager();
+        ApprovalAuthority engineeringDirector = new EngineeringDirector();
+        ApprovalAuthority vicePresident = new VicePresident();
+
+        // Set up the chain
+        projectManager.setNextAuthority(engineeringDirector);
+        engineeringDirector.setNextAuthority(vicePresident);
+
+        Scanner scanner = new Scanner(System.in);
+        double totalApprovedAmount = 0.0;
+
+        while (true) {
+            System.out.println("Enter the purchase amount:");
+            double purchaseAmount = scanner.nextDouble();
+
+            // Process the purchase through the chain
+            projectManager.processPurchase(purchaseAmount);
+
+            // Update total approved amount
+            totalApprovedAmount += purchaseAmount;
+
+            // Ask if there are more purchase orders to process
+            System.out.println("Do you have more purchase orders to process? (yes/no)");
+            String moreOrders = scanner.next();
+            if (moreOrders.equalsIgnoreCase("no")) {
+                break;
+            }
+        }
+
+        System.out.println("Total approved amount for the year: $" + totalApprovedAmount);
+
+        scanner.close();
+    }
+}
